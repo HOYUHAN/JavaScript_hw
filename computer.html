@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <title>計算機</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="input-group">
+            <input id="result" class="form-control text-right" type="number" name="temperature" value="0" readonly>
+        </div>
+        <div class="input-group">
+            <input id="input" class="form-control text-right" type="text" name="countMath" value="0">
+            <span class="input-group-btn">
+                <a id="clear" type="button" class="btn btn-default" onclick="clearInput(); return false;">清除</a>
+            </span>
+        </div>
+
+        <div id="buttons">
+            <div class="row">
+                <div class="col-md-3"><a id="zero" class="btn btn-default btn-block " href="#" role="button">C</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">+/-</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">%</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block " href="#" role="button"></a></div> 
+            </div> 
+
+            <div class="row">
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">1</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">2</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">3</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">+</a></div>
+            </div> 
+
+            <div class="row">
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">4</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">5</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">6</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">-</a></div>
+            </div>
+
+             <div class="row">
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">7</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">8</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">9</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">*</a></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">.</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">0</a></div>
+                <div class="col-md-3"><a id="total" class="btn btn-default btn-block " onclick = "countTotal()"; href="#" role="button">=</a></div>
+                <div class="col-md-3"><a class="btn btn-default btn-block input-pad" href="#" role="button">/</a></div>
+            </div>
+        </div>       
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+
+
+
+    <pre>
+        <script>
+            // function countTotal(){
+            //     function add(){ // +
+            //         var a=getFirstNumber;
+            //         var b=getTwiceNumber;
+            //         var t=Number(a)+Number(b);
+            //         return t;
+                    
+
+            //     }
+            //     function subtraction(){ // -
+
+            //     }
+            //     function multiplication(){ // *
+
+            //     }
+            //     function division(){ // /
+
+            //     }
+            //     function percent(){ // %
+
+            //     }
+            //     function addANDsubtraction(){ // +/-
+
+            //     }
+            // }
+            
+            function countTotal() {
+                var input = document.getElementById("input");
+                var result = document.getElementById("result");
+                var total=document.getElementById("total");
+                var text = this.innerHTML;
+                //result.value += input.value;
+
+                result.value = Number(input.value) +Number(input.value);  
+                
+            }
+
+            function clearInput() {
+                var input = document.getElementById("input");
+                var result = document.getElementById("result");
+                input.value = "";
+                result.value = "";
+
+                
+            }
+
+            function inputButton() {
+                var input = document.getElementById("input");
+                var result = document.getElementById("result");
+                var text = this.innerHTML;
+                if (input.value==0){
+                    clearInput();
+                }
+                
+                input.value+= text;
+                 
+                if(Number(text)){
+                    if(tmp!=null){
+                        text=input.value+text;
+                    }
+                    tmp = Number(text);
+
+                }else{
+                    switch(text){
+                        case '+':                       
+                        break;
+                        case '-':
+                        break;
+                        case '*':
+                        break;
+                        case '/':
+                        break;
+
+                    }
+                }
+ 
+             
+            }
+
+
+
+
+            var inputButtons = document.getElementsByClassName("input-pad");
+            var tmp=null;
+            var op=null;
+            for (var i = 0; i < inputButtons.length; i++) {
+                inputButtons[i].onclick = inputButton;
+            }
+        </script>
+    </pre>
+
+</body>
+
+</html>

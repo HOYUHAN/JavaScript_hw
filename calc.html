@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <title>CALC</title>
+</head>
+
+<body>
+    <table class="table table-bordered" style="width:400px">
+        <thead>
+            <tr>
+                <td colspan="4" id="output">0</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row" style="width:25%"><button type="button" class="btn btn-secondary"
+                        style="width:100%">C</button></th>
+                <th scope="row" style="width:25%"><button type="button" class="btn btn-secondary"
+                        style="width:100%">+/-</button></th>
+                <th scope="row" style="width:25%"><button type="button" class="btn btn-secondary"
+                        style="width:100%">%</button></th>
+                <th scope="row" style="width:25%"><button type="button" class="btn btn-warning"
+                        style="width:100%">/</button></th>
+            </tr>
+            <tr>
+                <th scope="row" style="width:25%"><button type="button" class="btn btn-dark"
+                        style="width:100%">7</button></th>
+                <th scope="row" style="width:25%"><button type="button" class="btn btn-dark"
+                        style="width:100%">8</button></th>
+                <th scope="row" style="width:25%"><button type="button" class="btn btn-dark"
+                        style="width:100%">9</button></th>
+                <th scope="row" style="width:25%"><button type="button" class="btn btn-warning"
+                        style="width:100%">*</button></th>
+            </tr>
+            <tr>
+                <th scope="row"><button type="button" class="btn btn-dark" style="width:100%">6</button></th>
+                <th scope="row"><button type="button" class="btn btn-dark" style="width:100%">5</button></th>
+                <th scope="row"><button type="button" class="btn btn-dark" style="width:100%">4</button></th>
+                <th scope="row"><button type="button" class="btn btn-warning" style="width:100%">-</button></th>
+            </tr>
+            <tr>
+                <th scope="row"><button type="button" class="btn btn-dark" style="width:100%">1</button></th>
+                <th scope="row"><button type="button" class="btn btn-dark" style="width:100%">2</button></th>
+                <th scope="row"><button type="button" class="btn btn-dark" style="width:100%">3</button></th>
+                <th scope="row"><button type="button" class="btn btn-warning" style="width:100%">+</button></th>
+            </tr>
+            <tr>
+                <th scope="row" colspan="2"><button type="button" class="btn btn-dark" style="width:100%">0</button>
+                </th>
+                <th scope="row"><button type="button" class="btn btn-dark" style="width:100%">.</button></th>
+                <th scope="row"><button type="button" class="btn btn-warning" style="width:100%">=</button></th>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
+<script>
+    function inputButton() {
+        var output = document.getElementById("output");
+        var text = this.innerHTML;
+        if (isNaN(text)) {
+
+            switch (text) {
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                    if (op == null) {
+                        output.innerText += text;
+                    } else {
+                        var tmpStr = output.innerText.split(op);
+
+                        var tmpN = 0;
+                        if (isNaN(tmpStr[1]) || tmpStr[1] == "") {
+
+                            output.innerText = n1 + text;
+                        } else {
+                            var tmp = parseFloat(tmpStr[1]) - parseInt(tmpStr[1]);
+                            if (tmp > 0) {
+
+                                tmpN = parseFloat(tmpStr[1]);
+
+                            } else {
+
+                                tmpN = parseInt(tmpStr[1]);
+                            }
+                            output.innerText = calc(n1, op, tmpN) + text;
+                        }
+                        // output.innerText = output.innerText.replace(op, text);
+                    }
+                    op = text;
+                    break;
+                case '.':
+                    output.innerText += text;
+                    break;
+                case '=':
+                    if (op != null) {
+                        var tmpStr = output.innerText.split(op);
+
+                        var tmpN = 0;
+
+                        var tmp = parseFloat(tmpStr[1]) - parseInt(tmpStr[1]);
+                        if (tmp > 0) {
+
+                            tmpN = parseFloat(tmpStr[1]);
+
+                        } else {
+
+                            tmpN = parseInt(tmpStr[1]);
+                        }
+                        output.innerText = calc(n1, op, tmpN);
+                        op = null;
+                    }
+                    break;
+                case 'C':
+                    output.innerText = "0";
+                    break;
+                case '+/-':
+                    if (op == null) {
+                        var tmpStr = output.innerText.split(op);
+
+                        var tmpN = 0;
+
+                        var tmp = parseFloat(tmpStr[0]) - parseInt(tmpStr[0]);
+                        if (tmp > 0) {
+
+                            tmpN = parseFloat(tmpStr[0]);
+
+                        } else {
+
+                            tmpN = parseInt(tmpStr[0]);
+                        }
+                        tmpN = 0 - tmpN;
+                        n1 = tmpN;
+                        output.innerText = tmpN + '';
+                    } else {
+                        var tmpStr = output.innerText.split(op);
+
+                        var tmpN = 0;
+
+                        if (isNaN(tmpStr[1]) || tmpStr[1] == "") {
+
+                            var tmp = parseFloat(tmpStr[0]) - parseInt(tmpStr[0]);
+                            if (tmp > 0) {
+
+                                tmpN = parseFloat(tmpStr[0]);
+
+                            } else {
+
+                                tmpN = parseInt(tmpStr[0]);
+                            }
+                            tmpN = 0 - tmpN;
+                            n1 = tmpN;
+                            output.innerText = tmpN + op;
+
+                        } else {
+
+                            var tmp = parseFloat(tmpStr[1]) - parseInt(tmpStr[1]);
+                            if (tmp > 0) {
+
+                                tmpN = parseFloat(tmpStr[1]);
+
+                            } else {
+
+                                tmpN = parseInt(tmpStr[1]);
+                            }
+                            tmpN = 0 - tmpN;
+                            output.innerText = tmpStr[0] + op + tmpN + '';
+                        }
+                    }
+                    break;
+                case '%':
+                    if (op == null) {
+                        var tmpStr = output.innerText.split(op);
+
+                        var tmpN = 0;
+
+                        var tmp = parseFloat(tmpStr[0]) - parseInt(tmpStr[0]);
+                        if (tmp > 0) {
+
+                            tmpN = parseFloat(tmpStr[0]);
+
+                        } else {
+
+                            tmpN = parseInt(tmpStr[0]);
+                        }
+                        tmpN = tmpN / 100;
+                        n1 = tmpN;
+                        output.innerText = tmpN + '';
+                    } else {
+                        var tmpStr = output.innerText.split(op);
+
+                        var tmpN = 0;
+
+                        if (isNaN(tmpStr[1]) || tmpStr[1] == "") {
+
+                            var tmp = parseFloat(tmpStr[0]) - parseInt(tmpStr[0]);
+                            if (tmp > 0) {
+
+                                tmpN = parseFloat(tmpStr[0]);
+
+                            } else {
+
+                                tmpN = parseInt(tmpStr[0]);
+                            }
+                            tmpN = tmpN / 100;
+                            n1 = tmpN;
+                            output.innerText = tmpN + op;
+
+                        } else {
+
+                            var tmp = parseFloat(tmpStr[1]) - parseInt(tmpStr[1]);
+                            if (tmp > 0) {
+
+                                tmpN = parseFloat(tmpStr[1]);
+
+                            } else {
+
+                                tmpN = parseInt(tmpStr[1]);
+                            }
+                            tmpN = tmpN / 100;
+                            output.innerText = tmpStr[0] + op + tmpN + '';
+                        }
+                    }
+                    break;
+            }
+
+        } else {
+            if (output.innerText == "0") {
+                output.innerText = text;
+            } else {
+                if (op != null) {
+                    var tmpSrt = output.innerText.split(op);
+                    if (isNaN(tmpSrt[0])) {
+
+                    } else {
+                        var tmp = parseFloat(tmpSrt[0]) - parseInt(tmpSrt[0]);
+                        if (tmp > 0) {
+
+                            n1 = parseFloat(tmpSrt[0]);
+
+                        } else {
+
+                            n1 = parseInt(tmpSrt[0]);
+                        }
+                    }
+                } else {
+
+                }
+                output.innerText += text;
+            }
+
+
+
+        }
+
+    }
+    var n1 = null, op = null;
+    var inputButtons = document.getElementsByClassName("btn");
+    for (var i = 0; i < inputButtons.length; i++) {
+        inputButtons[i].onclick = inputButton;
+    }
+    function calc(num1, op, num2) {
+        switch (op) {
+            case '+':
+                return num1 + num2;
+            case '-':
+                return num1 - num2;
+            case '*':
+                return num1 * num2;
+            case '/':
+                return num1 / num2;
+        }
+    }
+</script>
